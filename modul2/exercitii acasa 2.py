@@ -12,11 +12,11 @@
 #
 # print("Distractie placuta")
 
-pret_casa = 25000
-are_credit_bun = False
-
-if are_credit_bun:
-    avans = 0.1 * pret_casa
-else:
-    avans = 0.2 * pret_casa
-print(f"Avans : {avans}")
+# pret_casa = 25000
+# are_credit_bun = False
+#
+# if are_credit_bun:
+#     avans = 0.1 * pret_casa
+# else:
+#     avans = 0.2 * pret_casa
+# print(f"Avans : {avans}")
