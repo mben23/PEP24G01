@@ -1,50 +1,79 @@
-class Car(object):
-    name = 'car'
-    fuel_support = [95, 98]
-    color = 'white'
-    doors = 4
+result = 'abc'.__iter__()
+print(type(result))
 
-    def __init__(self, doors=None):
-        if doors:
-            self.doors = doors
-        print('Starting construction')
+print(id(result))
+print(id(result.__iter__()))
 
-    def change_car_color(self, color):
-        print(f'Changing car {self.name}')
-        self.color = color
+print(next(result))
+print(result.__next__())
+print(result.__next__())
+# print(result.__next__())
+print('Iterator is consumed')
 
-    def change_car_color_user_input(self):
-        print(f'Changing car {self.name}')
-        self.color = input('Set new car color:')
+result = 'abc'
+iterator = result.__iter__()
+for i in iterator:
+    print(i)
 
-    def drive(self, whiles):
-        print(f'Driving {whiles} while drive car')
-
-class Dacia(Car):
-    name = 'Logan'
-    brand = '''Dacia'''
-
-    def drive(self):
-        print('Driving 2 while drive car')
+# number = 5
+# for i in number:
+#     print(i)
 
 
-class BMW(Car):
-    name = 'x3'
-    brand = '''BMW'''
+# class Number:
+#
+#     def __init__(self, number):
+#         self.number = number
+#
+#     def __iter__(self):
+#         return range(self.number).__iter__()  ### but we want float
+#
+# n = Number(5)
+#
+# for i in n:
+#     print(i)
 
-    def drive(self):
-        print('Driving 4 while drive car')
+print('Iterator is consumed')
+class Number(int):
+
+    def __init__(self, number):
+        self.number = number
+
+    def __iter__(self):
+        return NumberIterator(self.number)
+
+    # def __add__(self, other):
+    #     return other.__add__(self)
+
+class NumberIterator:
+
+    def __init__(self, number):
+        self.number = number
+        self.number_list = []
+        for i in range(self.number):
+            self.number_list.append(i+1)
+        self.number_list.sort(reverse=True)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            result = self.number_list.pop()
+        except IndexError:
+            raise StopIteration
+        return float(result)
 
 
-car = Car()
-car.drive(3)
+n = Number(5)
+m = Number(6)
 
-dacia = Dacia()
-dacia.change_car_color('red')
-dacia.drive()
+for i in n:
+    print(i)
 
-bmw = BMW()
-bmw.change_car_color('blue')
-bmw.drive()
+print(m + n)
+print(m - n)
+print(m / n)
 
-ZeroDivisionError()
+# for i in n + m:
+#     print(i)
