@@ -1,4 +1,4 @@
-# Citirea salariilor de la utilizator
+
 salarii_input = input("Introduceti salariile separate cu virgula: ")
 salarii = [int(s) for s in salarii_input.split(",")]
 
